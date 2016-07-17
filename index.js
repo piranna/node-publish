@@ -1,16 +1,16 @@
 var npm = require('npm'),
     semver = require('semver'),
     fs = require('fs'),
-		log = require('npmlog');
+    log = require('npmlog');
 
 log.heading = 'publish';
 
 exports.start = function(tagName, callback) {
-		var loadOptions = {};
-		if (tagName) {
-				log.info('Using tag', tagName);
-				loadOptions.tag = tagName;
-		}
+    var loadOptions = {};
+    if (tagName) {
+        log.info('Using tag', tagName);
+        loadOptions.tag = tagName;
+    }
     npm.load(loadOptions, function (err) {
         callback(err, npm);
     });
@@ -36,12 +36,12 @@ function remoteVersion(localPackage, callback) {
             }
         } else {
             for (var remoteVersion in message) break;
-						if (remoteVersion) {
-            		callback(null, remoteVersion);
-						} else {
-								callback('No version of this package has yet been published for tag "' + npm.config.get('tag') + '".\n' +
-										     'You must publish manually the first release of your module');
-						}
+            if (remoteVersion) {
+                callback(null, remoteVersion);
+            } else {
+                callback('No version of this package has yet been published for tag "' + npm.config.get('tag') + '".\n' +
+                         'You must publish manually the first release of your module');
+            }
         }
     });
 }
@@ -88,7 +88,7 @@ exports.publish = function(options, callback) {
 function npmPublish(callback) {
     npm.commands.publish([], false, function (err, message) {
         if (err) {
-						log.error('publish failed:', message);
+            log.error('publish failed:', message);
             callback(err);
         } else {
             log.info('published ok');
@@ -134,8 +134,8 @@ function shouldPublish(options, localVersion, remoteVersion) {
             return false;
         }
     }
-		log.info('Defined criteria met; publish will release a new version');
-		return true;
+    log.info('Defined criteria met; publish will release a new version');
+    return true;
 }
 exports.shouldPublish = shouldPublish;
 

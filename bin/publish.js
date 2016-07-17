@@ -8,7 +8,7 @@ var knownOpts = {
         'on-minor': Boolean,
         'on-patch': Boolean,
         'on-build': Boolean,
-				'test':     Boolean,
+        'test':     Boolean,
         'tag':      String
     },
     shorthands = {
@@ -38,8 +38,8 @@ if (options.help) {
      --on-build  Publishes on build version changes.
      --tag <tag> Publishes the change with the given tag.
                  (npm defaults to 'latest')
-		 --test      Prints the versions of the packages
-		             and whether it would publish.
+     --test      Prints the versions of the packages
+                 and whether it would publish.
      --version   Print the version of publish.
      --help      Print this help.
 
