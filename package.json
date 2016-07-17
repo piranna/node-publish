@@ -11,10 +11,10 @@
     "test": "mocha --globals name"
   },
   "dependencies": {
+    "nopt": "3.x.x",
     "npm": "2.x.x",
     "npmlog": "1.x.x",
-    "semver": "4.x.x",
-    "nopt": "3.x.x"
+    "semver": "4.x.x"
   },
   "repository": {
     "type": "git",
