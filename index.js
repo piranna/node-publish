@@ -61,13 +61,13 @@ exports.publish = function(options, callback) {
                 if (err) {
                     callback(err);
                 } else if (shouldPublish(options, localVersion, remoteVersion) && !options.test) {
-                    if (isTravis()) {
-                        log.info('running in travis');
+                    if (isCI()) {
+                        log.info('running in CI server');
                         var npmUser = npmUserCredentials();
                         if (npmUser) {
                             npmAddUser(npmUser, function(err) {
                                 if (err) {
-                                    callback('error while trying to add npm user in travis: ' + err);
+                                    callback('error while trying to add npm user in CI server: ' + err);
                                 } else {
                                     npmPublish(callback);
                                 }
@@ -105,8 +105,8 @@ function npmUserCredentials() {
     }
 }
 
-function isTravis() {
-    return process.env.TRAVIS;
+function isCI() {
+    return process.env.CI;
 }
 
 function npmAddUser(npmUser, callback) {
