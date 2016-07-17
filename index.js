@@ -6,6 +6,10 @@ const semver = require('semver')
 
 log.heading = 'publish';
 
+
+const BASE_URL = 'https://registry.npmjs.org/'
+
+
 function start(tagName, callback) {
   var loadOptions = {};
   if (tagName) {
@@ -20,7 +24,7 @@ function start(tagName, callback) {
 
 function localPackage(callback) {
   try {
-    var json = require(__dirname+'/package.json');
+    var json = require(process.cwd()+'/package.json');
   } catch (err) {
     return callback(err);
   }
@@ -111,11 +115,11 @@ function isCI() {
   return process.env.CI;
 }
 
-function npmAddUser(npmUser, callback) {
-    npm.registry.adduser(npmUser.username, npmUser.password, npmUser.email, function(err) {
-        npm.config.set("email", npmUser.email, "user");
-        callback(err);
-    });
+function npmAddUser(auth, callback) {
+  npm.registry.adduser(BASE_URL, {auth}, function(err) {
+    npm.config.set("email", auth.email, "user");
+    callback(err);
+  });
 }
 
 function shouldPublish(options, localVersion, remoteVersion) {
