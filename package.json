@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "nopt": "3.x.x",
-    "npm": "2.x.x",
+    "npm": "5.7.1",
     "npmlog": "1.x.x",
     "semver": "4.x.x"
   },
