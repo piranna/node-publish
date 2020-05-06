@@ -8,13 +8,16 @@
     "publish": "./bin/publish.js"
   },
   "scripts": {
-    "test": "mocha --globals name"
+    "test": "mocha --globals name",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "nopt": "3.x.x",
     "npm": "2.x.x",
     "npmlog": "1.x.x",
-    "semver": "4.x.x"
+    "semver": "4.x.x",
+    "snyk": "^1.319.0"
   },
   "repository": {
     "type": "git",
@@ -30,5 +33,6 @@
     "mocha": "^2.4.5"
   },
   "author": "Carlos Manzanares <carlos.manzanares@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
